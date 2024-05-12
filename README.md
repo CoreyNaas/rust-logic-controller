@@ -60,6 +60,3 @@ Our constraint is to prioritize compactness without compromising novelty. We foc
 The project supports piecemeal compilation of RLC programs, AOIs, UDTs, and similar elements to enable online edits.
 
 We invite all interested parties to contribute to this novel undertaking, where your expertise can shine and influence the development of an open-source soft PLC platform that bridges Rust with the realm of industrial controls.
-
-Regards,
-Cora
