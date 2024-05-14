@@ -3,7 +3,21 @@
 Rust Logic Controller (RLC) is intended to build on the security of Rust by implementing an even more stringent development and runtime environment on top of it: that of the industrial programmable logic controller. The RLC uses a novel, non-IEC-61131 programming language, TACL, to design a PLC-like logic control program in plain text.
 
 ## Table of Contents
-1. Installation
+
+1. [Table of Contents](#Table of Contents)
+2. [Installation](#Installation)
+3. [Usage](#Usage)
+4. [Configuration](#Configuration)
+5. [Features](#Features)
+	1. [Project Goals](#Project Goals)
+6. [Contributing](#Contributing)
+7. [Examples](#Examples)
+8. [FAQs](#FAQs)
+9. [Changelog](#Changelog)
+10. [Licence](#Licence)
+11. [Credits](#Credits)
+12. [Contact](#Contact)
+13. [Appendix A: Glossary](#Appendix A: Glossary)
 
 ## Installation
 TBD
