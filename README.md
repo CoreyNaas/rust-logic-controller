@@ -1,62 +1,74 @@
-# Proposal for Rust Logic Controller Project Engagement
+# Rust Logic Controller
 
-## Introduction to Rust Logic Controller
+1. Free and Open source
+2. Lightweight and minimal vertical architecture 
+3. Novel logic syntax designed for automation
+4. Interact with local IO (GPIO) and network IO (ModBus)
+5. Create basic HMIs with {egui, or whatever would work on a little touchscreen (5-7 inches)}
+6. Perform online edits and modify logic on-scan
+7. Wonderware System Platform-like deployment model of execution and configuration, adapted for a lower level controls schema 
+8. Comparable to: the smartest smart relay you ever saw! Seriously, it probably won’t be very complex to start. Blinking lights will be a miracle if the architecture I’m imagining I need to write actually works. 
 
-The Rust Logic Controller (RLC) project seeks innovative collaborators interested in the intersection of Rust programming and industrial control system practices. The mission is to create a soft Programmable Logic Controller (PLC) that's not only free and open-source but also lightweight with a minimal vertical architecture. This unique initiative aims to combine the robust security features of Rust with traditional automation systems, targeting Windows and Linux consumer machines through ModBus protocol and budget embedded controllers via GPIO and ModBus.
+## Terms
 
-## Innovative Features of RLC
-
-RLC offers a distinct syntax tailored for automation, allowing interaction with both local (GPIO) and network I/O (ModBus). It enables the development of basic Human-Machine Interfaces (HMIs) suitable for small touchscreens while providing the flexibility to perform online edits and logic modifications during operation. The deployment model is inspired by Wonderware-like execution but tailored to lower-level control schemas. In essence, RLC could be likened to an exceptionally intelligent smart relay, albeit with modest initial complexity, aiming for a 'blinkenlights' level of functionality as a testament to its architecture's success.
-
-## Glossary
-
-- RLC: Rust Logic Controller, an emulation layer atop the system program.
-- TACL: Thing Action-Context-Language, a novel syntax for PLC-like programming.
-- PLC: Programmable Logic Controller.
-- HMI: Human-Machine Interface.
-- IO: Input/Output interface for systems.
-- ModBus: A communication protocol commonly used in industrial settings.
-- AOI: Add-On Instruction, reusable code blocks in PLCs.
-- UDT: User-Defined Type, data structures for PLCs.
-- System Program: The Rust-based foundation managing the RLC, including HMI, networking, GPIO control, deployment, and real-time compilation.
+- Logic - specifically the emulated program running on top of the RLC. Analogous to ladder logic or structured text. Hence “logic program” is a program inside the emulated system, etc.
+- System, bare metal - the underlying program written in rust that’s executing rust code. The RLC environment runs on top of this. See also System Program
+- RLC - the Rust Logic Controller, the emulated system built on top of the system program
+- TACL - Thing-Action-Context Language, a programming syntax designed for industrial controls PLC-like programming
+- PLC - 
+- HMI - 
+- IO - 
+- ModBus - 
+- AOI - 
+- UDT - 
+- System Program - the underlying programming running the RLC, and doing anything else that rust does. Running the HMI, actual networking and GPIO controls, handling deployments and in deployments, and piecemeal compilation, etc.
+- RLC Program - a program written in TACL that is executed in the RLC. Analogous to a controller program in Rockwell’s Logix Designer software.
 
 ## Project Goals
 
-1. To serve as a comprehensive learning experience for contributors.
-2. To develop a functional and usable soft PLC system.
-3. To ensure the project remains small, portable, and easy to deploy.
-4. To achieve competitiveness within the scope of its design parameters.
+1. Primary goal is to be a learning experience
+2. Secondary goal is to be usable 
+3. Tertiary goal is to be small and portable
+4. Quatiery goal is to be competitive
 
-## RLC Overview
+## Summary
 
-The RLC leverages the security and reliability of Rust, adding an industrial PLC's strict development and runtime environment. It uses TACL for logic program development and seeks to minimize the complexity between high-level logic and kernel-level code, offering developers flexibility to engage with both high-level IO logic and in-depth system programming. The project welcomes contributors who are eager to dive into both embedded and control systems programming within a singular platform.
+Rust Logic Controller is intended to build on the security of Rust by implementing an even more stringent development and runtime environment on top of it: that of the industrial programmable logic controller. On top of Rust an emulated system is built, the Rust Logic Controller. The RLC uses a novel programming language, TACL, to design a PLC-like logic control program in plain text. The syntax of TACL allows for deep automation of code creation and modification. 
 
-## Innovation Over Imitation
+## RLC: the Rust Logic Controller
 
-We advocate for pioneering and original approaches rather than replicating established PLC functionalities. This project is as much an educational tool as it is a playground for innovation. It's about fostering inventiveness and expanding the community's skillset.
+The RLC is intended to be a short stack, I.e. as few jumps as possible between, say, the kernel level code and the “high” level TACL. The programmer should want to use the RLC because it allows them both deep and shallow modification of an overall PLC-like control system. They can write the IO-facing top-level logic in a language that’s suited for it, and optimize or add to the core system programming in a more appropriate and powerful language. 
 
-## Emphasis on Size
+You’re not locked into a high level PLC language, but you’re also not stuck loading abstractions onto your firmware and software stack just to have a plc-like environment for the code that will change most often: that which modifies the IO.
 
-Our constraint is to prioritize compactness without compromising novelty. We focus on size over speed, given that the response time demands of PLC operations are comfortably within the capabilities of the underlying system. By staying close to the bare metal, we naturally enhance the RLC's speed, thereby affording us the luxury to optimize size without impacting logic performance.
+You can work on embedded programming and controls programming on the same system.
 
-## Design Requirements
+(I should ready more about RTOSs, I don’t much much about them other than the name and that they’re fast. I might be reinventing the RTOS lmao. But we reinvent the wheel not so we have more wheels, but so we have more inventors.)
 
-### Target Architecture:
+I encourage this project to emphasize innovative and novel ideas over just implementing existing PLC capabilities. I started this project more for me, and perhaps others, to learn from and have fun with, rather than an actual production application.
 
-- Windows
-- Linux
-- Embedded Linux
-- Bare metal embedded Rust
+As an Independent Constraint on the project I want to impose the challenge of making it as small as possible. As big as necessary, as big as the novelty requires, but focus on making it small too. Focus on size rather than speed, because the requires of the scan time of a PLC are much slower than the underlying system is capable of producing, which is good. So we will raise size slightly above speed. The closer we are to the bare metal, the faster the RLC be, and thus we can be slower and less optimized before impacting the logic executions.
 
-### Primary Controller Loop (PCL):
-
-1. Housekeeping: Remote communications, accepting edits, etc.
-2. Read Inputs
-3. Evaluate and resolve logic
-4. Set outputs
-
-### Compilation:
-
-The project supports piecemeal compilation of RLC programs, AOIs, UDTs, and similar elements to enable online edits.
-
-We invite all interested parties to contribute to this novel undertaking, where your expertise can shine and influence the development of an open-source soft PLC platform that bridges Rust with the realm of industrial controls.
+Design requirements:
+1. API requirements
+	1. Example program code file
+	2. Example data code file
+	3. Sample local IO code file
+	4. Example remote IO code file 
+	5. Example controller code file
+2. Target architecture
+	1. Windows, 
+	2. Linux
+	3. embedded Linux, 
+	4. bare metal embedded Rust
+	5. (Quick reminder that Logix controllers run on VxWorks and the HMIs on WindowsCE, so these targets aren’t as strange as they look)
+3. Primary Controller Loop (PCL)
+	1. Housekeeping
+		1. Remote Communications
+		2. Accepting edits
+	2. Etc.
+	3. Read Inputs
+	4. Evaluate and resolve logic
+	5. Set outputs
+4. Piecemeal compilation of RLC programs, AOIs, UDTs, etc.
+	1. In essence, the parts that allow us to perform online edits and enable/disable execution of particular programs and structures
