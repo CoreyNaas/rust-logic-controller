@@ -4,20 +4,19 @@ Rust Logic Controller (RLC) is intended to build on the security of Rust by impl
 
 ## Table of Contents
 
-1. [Table of Contents](#Table of Contents)
-2. [Installation](#Installation)
-3. [Usage](#Usage)
-4. [Configuration](#Configuration)
-5. [Features](#Features)
+1. [Installation](#Installation)
+2. [Usage](#Usage)
+3. [Configuration](#Configuration)
+4. [Features](#Features)
 	1. [Project Goals](#Project Goals)
-6. [Contributing](#Contributing)
-7. [Examples](#Examples)
-8. [FAQs](#FAQs)
-9. [Changelog](#Changelog)
-10. [Licence](#Licence)
-11. [Credits](#Credits)
-12. [Contact](#Contact)
-13. [Appendix A: Glossary](#Appendix A: Glossary)
+5. [Contributing](#Contributing)
+6. [Examples](#Examples)
+7. [FAQs](#FAQs)
+8. [Changelog](#Changelog)
+9. [Licence](#Licence)
+10. [Credits](#Credits)
+11. [Contact](#Contact)
+12. [Appendix A: Glossary](#Appendix A: 0Glossary)
 
 ## Installation
 TBD
