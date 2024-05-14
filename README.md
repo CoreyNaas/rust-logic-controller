@@ -41,7 +41,7 @@ TBD
 1. Primary goal is to be a learning experience
 2. Secondary goal is to be usable 
 3. Tertiary goal is to be small and portable
-4. Quatiery goal is to be competitive
+4. Quatiery goal is to be useful
 
 ## Contributing
 TBD
